@@ -1,0 +1,55 @@
+/**
+ * Component Page/Body.
+ */
+
+// =============================================================================
+// Page body
+// =============================================================================
+
+.page-body {
+    flex: 100 1 auto;
+    overflow: {
+        x: hidden;
+        y: auto;
+    }
+    padding: $page-indent 0;
+    position: relative;
+}
+
+/**
+ * Modifiers.
+ */
+
+// .component--modifier {}
+
+// .component {
+//     &.\--modifier {}
+// }
+
+/**
+ * States.
+ */
+
+// .is-component-state {}
+
+// .component {
+//     &.is-state {}
+// }
+
+/**
+ * Context.
+ */
+
+// .has-component
+
+// =============================================================================
+// Subcomponents
+// =============================================================================
+
+// Page body inset
+// =============================================================================
+
+.page-body__inset {
+    position: relative;
+    right: calc(-0.5 * (100vw - 100%));
+}

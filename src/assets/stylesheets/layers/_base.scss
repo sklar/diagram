@@ -1,0 +1,57 @@
+/**
+ * Layer Base.
+ */
+
+// =============================================================================
+// Base
+// =============================================================================
+
+/**
+ * 1. Set all (pseudo)elements `box-sizing` to `border-box`.
+ * 2. Disable the default callout shown on iOS when you touch and hold a touch target.
+ */
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box; /* 1 */
+    outline: none;
+
+    -webkit-touch-callout: none; /* 2 */
+}
+
+/**
+ * 1. Webkit has a bug that prevents line-height being set in `rem` on <html>;
+ *  To work around this and simplify output, we can set initial line-height
+ *  in em's for all relative rhythm units.
+ * 2. Force printer to print background colors and images (override printing setup)
+ *  in Webkit.
+ *  @link https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-print-color-adjust
+ */
+
+html {
+    line-height: $base-line-height / $base-font-size * 1em; /* 1 */
+
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: $base-background;
+    color: $base-color;
+
+    -webkit-print-color-adjust: exact; /* 2 */
+
+}
+
+/**
+ * Selection color.
+ */
+
+// ::selection {
+//     background-color: $base-selection-background;
+// }

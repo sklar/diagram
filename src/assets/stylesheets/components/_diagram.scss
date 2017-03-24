@@ -1,0 +1,260 @@
+/**
+ * Component Diagram.
+ */
+
+// =============================================================================
+// Diagram
+// =============================================================================
+
+.dia {
+    display: flex;
+    width: 100%;
+}
+
+// =============================================================================
+// Subcomponents
+// =============================================================================
+
+// Diagram cell
+// =============================================================================
+
+.dia__cell {
+    width: $diagram-cell-size;
+
+    &:not(.\--primary) {
+        padding-top: $base-line-height +
+            $diagram-list-gutter +
+            2 * ($diagram-list-item-border-size + $diagram-list-item-indent);
+    }
+
+    & + & {
+        margin-left: $diagram-cell-gutter;
+    }
+}
+
+/**
+ * Modifiers.
+ */
+
+/**
+ * Diagram cell, primary.
+ */
+
+.dia__cell {
+    &.\--primary {
+        color: map-get($diagram-colors, primary);
+
+        .dia__list {
+            background-color: rgba(map-get($diagram-colors, primary), 0.25);
+        }
+        .dia__list__item {
+            border-color: map-get($diagram-colors, primary);
+        }
+    }
+}
+
+/**
+ * Diagram cell, secondary.
+ */
+
+.dia__cell {
+    &.\--secondary {
+        color: map-get($diagram-colors, secondary);
+
+        .dia__list {
+            background-color: rgba(map-get($diagram-colors, secondary), 0.25);
+        }
+        .dia__list__item {
+            border-color: map-get($diagram-colors, secondary);
+        }
+    }
+}
+
+/**
+ * Diagram cell, tertiary.
+ */
+
+.dia__cell {
+    &.\--tertiary {
+        color: map-get($diagram-colors, tertiary);
+
+        .dia__list {
+            background-color: rgba(map-get($diagram-colors, tertiary), 0.25);
+        }
+        .dia__list__item {
+            border-color: map-get($diagram-colors, tertiary);
+        }
+    }
+}
+
+// Diagram cell header
+// =============================================================================
+
+.dia__cell__head {
+    font: {
+        size: 1rem;
+        weight: 500;
+    }
+    margin: 0;
+    overflow: hidden;
+    padding: $diagram-list-gutter;
+    text: {
+        align: center;
+        overflow: ellipsis;
+        transform: uppercase;
+    }
+    white-space: nowrap;
+}
+
+// Diagram list
+// =============================================================================
+
+.dia__list {
+    border: $diagram-list-border-size solid currentColor;
+    border-radius: 4px;
+    list-style: none;
+    margin: 0;
+    padding: $diagram-list-gutter;
+}
+
+// Diagram list item
+// =============================================================================
+
+.dia__list__item {
+    background: white;
+    border: $diagram-list-item-border-size solid currentColor;
+    border-radius: 3px;
+    color: $diagram-list-item-color;
+    padding: $diagram-list-item-indent;
+    position: relative;
+
+    & + & {
+        margin-top: $diagram-list-gutter;
+    }
+
+    &[id="creditors"],
+    &[id="payments"] {
+        .dia__arrow {
+            right: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+        }
+    }
+    &[id="creditors"] {
+        %dia__arrow__body {
+            animation:
+                fade--in
+                    $diagram-arrow-animation-duration
+                    1 * $diagram-arrow-animation-delay
+                    both,
+                slide--right
+                    $diagram-arrow-animation-duration
+                    map-get($animation-easing, in-out-circ)
+                    1 * $diagram-arrow-animation-delay
+                    both;
+            background-color: rgba(map-get($diagram-colors, primary), 0.5);
+        }
+    }
+    &[id="payments"] {
+        %dia__arrow__body {
+            animation:
+                fade--in
+                    $diagram-arrow-animation-duration
+                    2 * $diagram-arrow-animation-delay
+                    both,
+                slide--right
+                    $diagram-arrow-animation-duration
+                    map-get($animation-easing, in-out-circ)
+                    2 * $diagram-arrow-animation-delay
+                    both;
+            background-color: rgba(map-get($diagram-colors, secondary), 0.5);
+        }
+    }
+
+    &[id="bank-interface"],
+    &[id="statements"] {
+        .dia__arrow {
+            left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+        }
+    }
+    &[id="bank-interface"] {
+        .dia__arrow {
+            transform: rotate(-20deg);
+            transform-origin: 0 center;
+        }
+        %dia__arrow__body {
+            animation:
+                fade--in
+                    $diagram-arrow-animation-duration
+                    3 * $diagram-arrow-animation-delay
+                    both,
+                slide--left
+                    $diagram-arrow-animation-duration
+                    map-get($animation-easing, in-out-circ)
+                    3 * $diagram-arrow-animation-delay
+                    both;
+            background-color: rgba(map-get($diagram-colors, tertiary), 0.5);
+        }
+    }
+    &[id="statements"] {
+        .dia__arrow {
+            transform-origin: 0 center;
+
+            &:nth-of-type(1) {
+                transform: rotate(40deg);
+            }
+            &:nth-of-type(2) {
+                transform: rotate(20deg);
+            }
+            // &:nth-of-type(3) {
+            //     transform: rotate(0deg);
+            // }
+            &:nth-of-type(4) {
+                transform: rotate(-20deg);
+            }
+        }
+        %dia__arrow__body {
+            animation:
+                fade--in
+                    $diagram-arrow-animation-duration
+                    4 * $diagram-arrow-animation-delay
+                    both,
+                slide--left
+                    $diagram-arrow-animation-duration
+                    map-get($animation-easing, in-out-circ)
+                    4 * $diagram-arrow-animation-delay
+                    both;
+            background-color: rgba(map-get($diagram-colors, secondary), 0.5);
+        }
+    }
+}
+
+// Diagram arrow
+// =============================================================================
+
+.dia__arrow {
+    @include acceleration;
+
+    height: map-get($diagram-arrow-size, y);
+    margin-top: -0.5 * map-get($diagram-arrow-size, y);
+    position: absolute;
+    top: 50%;
+    width: map-get($diagram-arrow-size, x);
+
+    &::after {
+        @extend %dia__arrow__body;
+        content: "";
+    }
+}
+
+// Diagram arrow body
+// =============================================================================
+
+%dia__arrow__body {
+    background: {
+        image: url("assets/images/arrow.svg");
+        position: right center;
+        repeat: no-repeat;
+        size: auto 100%;
+    }
+    display: block;
+    height: map-get($diagram-arrow-size, y);
+}

@@ -1,0 +1,56 @@
+/**
+ * Component Diagram settings.
+ */
+
+// =============================================================================
+// Diagram settings
+// =============================================================================
+
+// Set diagram colors.
+$diagram-colors: (
+    primary: #2979ff,
+    secondary: #00c853,
+    tertiary: #666,
+);
+
+// Set diagram cell gutter.
+$diagram-cell-gutter: 10%;
+
+// Set diagram cell size.
+$diagram-cell-size: calc((100% - 2 * #{$diagram-cell-gutter}) / 3);
+
+/**
+ * Diagram list.
+ */
+
+// Set diagram list border size.
+$diagram-list-border-size: 2px;
+
+// Set diagram list gutter;
+$diagram-list-gutter: 8px;
+
+// Set diagram list item border size.
+$diagram-list-item-border-size: 1px;
+
+// Set diagram list item color.
+$diagram-list-item-color: $base-color;
+
+// Set diagram list item indent;
+$diagram-list-item-indent: 8px;
+
+/**
+ * Diagram arrow.
+ */
+
+// Set diagram arrow animation duration.
+$diagram-arrow-animation-duration: 0.6s;
+
+// Set diagram arrow animation delay.
+$diagram-arrow-animation-delay: 1s;
+
+// Calculate diagram arrow size.
+$diagram-arrow-size: (
+    x: (10% / ((100% - 2 * $diagram-cell-gutter) / 3)) * 100%,
+    y: 16px,
+);
+

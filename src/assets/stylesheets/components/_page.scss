@@ -1,0 +1,68 @@
+/**
+ * Component Page.
+ */
+
+// =============================================================================
+// Page
+// =============================================================================
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/**
+ * Modifiers.
+ */
+
+/**
+ * Page, wide.
+ */
+
+.page {
+    &.\--wide {
+        .page__inset {
+            max-width: 100%;
+        }
+    }
+}
+
+/**
+ * States.
+ */
+
+// .is-component-state
+
+/**
+ * Context.
+ */
+
+
+// =============================================================================
+// Subcomponents
+// =============================================================================
+
+// Page inset
+// =============================================================================
+
+.page__inset {
+    @extend %ctr--center !optional;
+
+    max-width: map-get($page-size, max);
+    min-width: map-get($page-size, min);
+    padding: {
+        left: $page-indent;
+        right: $page-indent;
+    }
+    position: relative;
+
+    @media print {
+        max-width: 100%;
+        padding: {
+            left: 0;
+            right: 0;
+        }
+    }
+}

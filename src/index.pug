@@ -1,0 +1,37 @@
+extends layouts/master.pug
+
+block variables
+    - var title = "diagram"
+
+block content
+    .dia
+        .dia__cell.--primary
+            h3.dia__cell__head SunSystems
+            ul.dia__list
+                li.dia__list__item Debtors
+                li.dia__list__item#creditors Creditors
+                    span.dia__arrow
+                li.dia__list__item Bank Accounts
+                li.dia__list__item
+                    | Charges
+                    br
+                    | Rounding Differences
+                    br
+                    | Interest
+
+        .dia__cell.--secondary
+            h3.dia__cell__head Bank Payment System
+            ul.dia__list
+                li.dia__list__item#payments Payments
+                    span.dia__arrow
+                li.dia__list__item#statements Statements
+                    span.dia__arrow
+                    span.dia__arrow
+                    span.dia__arrow
+                    span.dia__arrow
+
+        .dia__cell.--tertiary
+            h3.dia__cell__head Bank
+            ul.dia__list
+                li.dia__list__item#bank-interface Bank Interface
+                    span.dia__arrow

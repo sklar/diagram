@@ -1,0 +1,44 @@
+block variables
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(
+            http-equiv="x-ua-compatible"
+            content="ie=edge"
+        )
+
+        title #{title}
+
+        meta(
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        )
+
+        style
+            include ../../.tmp/assets/stylesheets/main.min.css
+
+
+    body
+        .page
+
+            // page header
+            //- header.page-head(role="banner")
+            //-     .page__inset
+            //-         block header
+
+
+            // page body
+            main.page-body(role="main")
+                .page__inset
+
+                    block content
+
+
+            // page footer
+            //- footer.page-foot(role="contentinfo")
+            //-     .page__inset
+            //-         block footer
+
+
