@@ -1,7 +1,0 @@
-# Ignored files.
-# @link https://docs.npmjs.com/files/package.json
-
-**/.*
-*.md
-*.sublime-*
-src
