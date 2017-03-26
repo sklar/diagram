@@ -28,7 +28,7 @@
     }
 
     & + & {
-        margin-left: $diagram-cell-gutter;
+        margin-left: $diagram-gutter;
     }
 }
 
@@ -150,10 +150,18 @@
                     map-get($animation-easing, in-out-circ)
                     1 * $diagram-arrow-animation-delay
                     both;
-            background-color: rgba(map-get($diagram-colors, primary), 0.5);
+            background: {
+                color: rgba(map-get($diagram-colors, primary), 0.5);
+                image: url("assets/images/arrow.svg#primary");
+            }
+
         }
     }
     &[id="payments"] {
+        .dia__arrow {
+            display: none;
+        }
+
         %dia__arrow__body {
             animation:
                 fade--in
@@ -165,7 +173,10 @@
                     map-get($animation-easing, in-out-circ)
                     2 * $diagram-arrow-animation-delay
                     both;
-            background-color: rgba(map-get($diagram-colors, secondary), 0.5);
+            background: {
+                color: rgba(map-get($diagram-colors, secondary), 0.5);
+                image: url("assets/images/arrow.svg#secondary");
+            }
         }
     }
 
@@ -177,8 +188,9 @@
     }
     &[id="bank-interface"] {
         .dia__arrow {
-            transform: rotate(-20deg);
-            transform-origin: 0 center;
+            transform: rotate(180deg);
+            // transform: rotate(180deg - 20deg);
+            // transform-origin: 0 center;
         }
         %dia__arrow__body {
             animation:
@@ -186,28 +198,34 @@
                     $diagram-arrow-animation-duration
                     3 * $diagram-arrow-animation-delay
                     both,
-                slide--left
+                slide--right
                     $diagram-arrow-animation-duration
                     map-get($animation-easing, in-out-circ)
                     3 * $diagram-arrow-animation-delay
                     both;
-            background-color: rgba(map-get($diagram-colors, tertiary), 0.5);
+            background: {
+                color: rgba(map-get($diagram-colors, tertiary), 0.5);
+                image: url("assets/images/arrow.svg#tertiary");
+            }
         }
     }
     &[id="statements"] {
         .dia__arrow {
-            transform-origin: 0 center;
+            // transform-origin: 0 center;
 
             &:nth-of-type(1) {
+                display: none;
                 transform: rotate(40deg);
             }
             &:nth-of-type(2) {
+                display: none;
                 transform: rotate(20deg);
             }
-            // &:nth-of-type(3) {
-            //     transform: rotate(0deg);
-            // }
+            &:nth-of-type(3) {
+                transform: rotate(180deg);
+            }
             &:nth-of-type(4) {
+                display: none;
                 transform: rotate(-20deg);
             }
         }
@@ -217,12 +235,15 @@
                     $diagram-arrow-animation-duration
                     4 * $diagram-arrow-animation-delay
                     both,
-                slide--left
+                slide--right
                     $diagram-arrow-animation-duration
                     map-get($animation-easing, in-out-circ)
                     4 * $diagram-arrow-animation-delay
                     both;
-            background-color: rgba(map-get($diagram-colors, secondary), 0.5);
+            background: {
+                color: rgba(map-get($diagram-colors, secondary), 0.5);
+                image: url("assets/images/arrow.svg#secondary");
+            }
         }
     }
 }
@@ -233,11 +254,13 @@
 .dia__arrow {
     @include acceleration;
 
-    height: map-get($diagram-arrow-size, y);
-    margin-top: -0.5 * map-get($diagram-arrow-size, y);
+    background-color: rgba(red, 0.5);
+
+    height: $diagram-arrow-height;
+    margin-top: -0.5 * $diagram-arrow-height;
     position: absolute;
     top: 50%;
-    width: map-get($diagram-arrow-size, x);
+    width: $diagram-arrow-width;
 
     &::after {
         @extend %dia__arrow__body;
@@ -250,11 +273,10 @@
 
 %dia__arrow__body {
     background: {
-        image: url("assets/images/arrow.svg");
         position: right center;
         repeat: no-repeat;
         size: auto 100%;
     }
     display: block;
-    height: map-get($diagram-arrow-size, y);
+    height: $diagram-arrow-height;
 }

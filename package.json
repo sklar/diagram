@@ -16,7 +16,7 @@
     "copy:css": "cp -v node_modules/normalize.css/normalize.css .tmp/assets/stylesheets",
     "copy:image": "mkdir -p dist/ && (run-p copy:image:*)",
     "minify:image": "run-p minify:image:*",
-    "minify:image:svg": "svgo -f src/assets/images -o dist/assets/images",
+    "minify:image:svg": "svgo --disable=cleanupIDs -f src/assets/images -o dist/assets/images",
     "minify:css": "cleancss -O1 specialComments:0 --output .tmp/assets/stylesheets/main.min.css .tmp/assets/stylesheets/normalize.css .tmp/assets/stylesheets/main.css",
     "postcss:autoprefixer": "postcss --use autoprefixer --replace .tmp/assets/stylesheets/*.css",
     "prebuild": "npm run clean:dist",
