@@ -8,6 +8,8 @@
 
 .dia {
     display: flex;
+    font-size: $diagram-font-size;
+    line-height: $diagram-line-height-ratio;
     width: 100%;
 }
 
@@ -120,8 +122,26 @@
 // Diagram list item
 // =============================================================================
 
+// Calculate diagram list item spacing.
+$diagram-list-item-spacing: (unit-convert(1rem, "px") * $diagram-line-height-ratio)
+    + 2 * $diagram-list-item-indent
+    + $diagram-list-gutter
+    + $diagram-list-border-size
+    + $diagram-list-item-border-size;
+
+// Calculate diagram list item angle.
+$diagram-list-item-angle: ();
+
+@for $i from 1 through 2 {
+    $diagram-list-item-angle: append(
+        $diagram-list-item-angle,
+        atan($i * $diagram-list-item-spacing / $diagram-arrow-width)
+    );
+}
+
+
 .dia__list__item {
-    background: white;
+    background: #fff;
     border: $diagram-list-item-border-size solid currentColor;
     border-radius: 3px;
     color: $diagram-list-item-color;
@@ -132,49 +152,38 @@
         margin-top: $diagram-list-gutter;
     }
 
+    &[id] {
+        %dia__arrow__body {
+            animation: {
+                name: fade--in, slide--left-reverse;
+                duration: $diagram-arrow-animation-duration, $diagram-arrow-animation-duration;
+                fill-mode: both, both;
+            }
+        }
+    }
+
     &[id="creditors"],
     &[id="payments"] {
         .dia__arrow {
-            right: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+            right: (-1) * ($diagram-arrow-width + $diagram-list-gutter + $diagram-list-border-size);
         }
     }
     &[id="creditors"] {
         %dia__arrow__body {
-            animation:
-                fade--in
-                    $diagram-arrow-animation-duration
-                    1 * $diagram-arrow-animation-delay
-                    both,
-                slide--right
-                    $diagram-arrow-animation-duration
-                    map-get($animation-easing, in-out-circ)
-                    1 * $diagram-arrow-animation-delay
-                    both;
+            animation-delay:
+                1 * $diagram-arrow-animation-delay,
+                1 * $diagram-arrow-animation-delay;
             background: {
-                color: rgba(map-get($diagram-colors, primary), 0.5);
                 image: url("assets/images/arrow.svg#primary");
             }
-
         }
     }
     &[id="payments"] {
-        .dia__arrow {
-            display: none;
-        }
-
         %dia__arrow__body {
-            animation:
-                fade--in
-                    $diagram-arrow-animation-duration
-                    2 * $diagram-arrow-animation-delay
-                    both,
-                slide--right
-                    $diagram-arrow-animation-duration
-                    map-get($animation-easing, in-out-circ)
-                    2 * $diagram-arrow-animation-delay
-                    both;
+            animation-delay:
+                2 * $diagram-arrow-animation-delay,
+                2 * $diagram-arrow-animation-delay;
             background: {
-                color: rgba(map-get($diagram-colors, secondary), 0.5);
                 image: url("assets/images/arrow.svg#secondary");
             }
         }
@@ -184,64 +193,74 @@
     &[id="statements"] {
         .dia__arrow {
             left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+            transform-origin: 0 center;
         }
     }
     &[id="bank-interface"] {
         .dia__arrow {
-            transform: rotate(180deg);
-            // transform: rotate(180deg - 20deg);
-            // transform-origin: 0 center;
+            transform:
+                rotate(
+                    180deg -
+                    rad-to-deg(nth($diagram-list-item-angle, 1))
+                )
+                scaleX(
+                    ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                    $diagram-arrow-width
+                );
         }
         %dia__arrow__body {
-            animation:
-                fade--in
-                    $diagram-arrow-animation-duration
-                    3 * $diagram-arrow-animation-delay
-                    both,
-                slide--right
-                    $diagram-arrow-animation-duration
-                    map-get($animation-easing, in-out-circ)
-                    3 * $diagram-arrow-animation-delay
-                    both;
+            animation-delay:
+                3 * $diagram-arrow-animation-delay,
+                3 * $diagram-arrow-animation-delay;
             background: {
-                color: rgba(map-get($diagram-colors, tertiary), 0.5);
                 image: url("assets/images/arrow.svg#tertiary");
             }
         }
     }
     &[id="statements"] {
         .dia__arrow {
-            // transform-origin: 0 center;
-
             &:nth-of-type(1) {
-                display: none;
-                transform: rotate(40deg);
+                transform:
+                    rotate(
+                        180deg +
+                        rad-to-deg(nth($diagram-list-item-angle, 2))
+                    )
+                    scaleX(
+                        (2 * $diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 2))) /
+                        $diagram-arrow-width
+                    );
             }
             &:nth-of-type(2) {
-                display: none;
-                transform: rotate(20deg);
+                transform:
+                    rotate(
+                        180deg +
+                        rad-to-deg(nth($diagram-list-item-angle, 1))
+                    )
+                    scaleX(
+                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                        $diagram-arrow-width
+                    );
             }
             &:nth-of-type(3) {
                 transform: rotate(180deg);
             }
             &:nth-of-type(4) {
-                display: none;
-                transform: rotate(-20deg);
+                transform:
+                    rotate(
+                        180deg -
+                        rad-to-deg(nth($diagram-list-item-angle, 1))
+                    )
+                    scaleX(
+                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                        $diagram-arrow-width
+                    );
             }
         }
         %dia__arrow__body {
-            animation:
-                fade--in
-                    $diagram-arrow-animation-duration
-                    4 * $diagram-arrow-animation-delay
-                    both,
-                slide--right
-                    $diagram-arrow-animation-duration
-                    map-get($animation-easing, in-out-circ)
-                    4 * $diagram-arrow-animation-delay
-                    both;
+            animation-delay:
+                4 * $diagram-arrow-animation-delay,
+                4 * $diagram-arrow-animation-delay;
             background: {
-                color: rgba(map-get($diagram-colors, secondary), 0.5);
                 image: url("assets/images/arrow.svg#secondary");
             }
         }
@@ -254,10 +273,9 @@
 .dia__arrow {
     @include acceleration;
 
-    background-color: rgba(red, 0.5);
-
     height: $diagram-arrow-height;
     margin-top: -0.5 * $diagram-arrow-height;
+    overflow: hidden;
     position: absolute;
     top: 50%;
     width: $diagram-arrow-width;
@@ -275,7 +293,7 @@
     background: {
         position: right center;
         repeat: no-repeat;
-        size: auto 100%;
+        size: cover;
     }
     display: block;
     height: $diagram-arrow-height;

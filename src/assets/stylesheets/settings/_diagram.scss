@@ -13,8 +13,13 @@ $diagram-colors: (
     tertiary: #666,
 );
 
+// Set diagram font size.
+$diagram-font-size: 1rem;
+
+// Set diagram line height ratio.
+$diagram-line-height-ratio: 1.5;
+
 // Set diagram gutter.
-$diagram-gutter: 10%;
 $diagram-gutter: 100px;
 
 // Set diagram cell size.
@@ -45,18 +50,14 @@ $diagram-list-item-indent: 8px;
 
 // Set diagram arrow animation duration.
 $diagram-arrow-animation-duration: 0.6s;
-$diagram-arrow-animation-duration: 0.2s;
+// $diagram-arrow-animation-duration: 0.2s;
 
 // Set diagram arrow animation delay.
 $diagram-arrow-animation-delay: 1s;
-$diagram-arrow-animation-delay: 0s;
+// $diagram-arrow-animation-delay: 0s;
 
 // Set diagram arrow height.
 $diagram-arrow-height: 16px;
 
 // Set diagram arrow width.
 $diagram-arrow-width: $diagram-gutter;
-
-
-
-
