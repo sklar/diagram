@@ -145,14 +145,26 @@ $diagram-list-item-angle: ();
     border: $diagram-list-item-border-size solid currentColor;
     border-radius: 3px;
     color: $diagram-list-item-color;
+    display: flex;
+    justify-content: space-between;
     padding: $diagram-list-item-indent;
     position: relative;
+
+    &::after {
+        @extend %dia__list__item__figure;
+        content: "";
+    }
 
     & + & {
         margin-top: $diagram-list-gutter;
     }
 
     &[id] {
+        // animation: {
+        //     name: fade--in;
+        //     duration: $diagram-list-item-animation-duration;
+        //     fill-mode: both;
+        // }
         %dia__arrow__body {
             animation: {
                 name: fade--in, slide--left-reverse;
@@ -179,6 +191,10 @@ $diagram-list-item-angle: ();
         }
     }
     &[id="payments"] {
+        &::after {
+            background-image: url("assets/images/icon-payments-green.svg");
+        }
+
         %dia__arrow__body {
             animation-delay:
                 2 * $diagram-arrow-animation-delay,
@@ -197,6 +213,10 @@ $diagram-list-item-angle: ();
         }
     }
     &[id="bank-interface"] {
+        &::after {
+            background-image: url("assets/images/icon-automatic-reconciliation.svg");
+        }
+
         .dia__arrow {
             transform:
                 rotate(
@@ -218,6 +238,10 @@ $diagram-list-item-angle: ();
         }
     }
     &[id="statements"] {
+        &::after {
+            background-image: url("assets/images/icon-statements-green.svg");
+        }
+
         .dia__arrow {
             &:nth-of-type(1) {
                 transform:
@@ -265,6 +289,18 @@ $diagram-list-item-angle: ();
             }
         }
     }
+}
+
+// Diagram list item figure
+// =============================================================================
+
+%dia__list__item__figure {
+    @include size($diagram-list-item-figure-size);
+
+    background: center no-repeat;
+    background-size: contain;
+    display: flex;
+    flex: 0 0 auto;
 }
 
 // Diagram arrow

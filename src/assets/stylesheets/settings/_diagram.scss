@@ -29,6 +29,12 @@ $diagram-cell-size: calc((100% - 2 * #{$diagram-gutter}) / 3);
  * Diagram list.
  */
 
+// Set diagram list item animation duration.
+$diagram-list-item-animation-duration: 0.6s;
+
+// Set diagram list item animation delay.
+$diagram-list-item-animation-delay: 1s;
+
 // Set diagram list border size.
 $diagram-list-border-size: 2px;
 
@@ -43,6 +49,9 @@ $diagram-list-item-color: $base-color;
 
 // Set diagram list item indent;
 $diagram-list-item-indent: 8px;
+
+// Set diagram list item figure size;
+$diagram-list-item-figure-size: 1.5em;
 
 /**
  * Diagram arrow.
