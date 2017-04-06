@@ -17,7 +17,7 @@ $diagram-colors: (
 $diagram-font-size: 1rem;
 
 // Set diagram line height ratio.
-$diagram-line-height-ratio: 1.5;
+$diagram-line-height-ratio: 1.25;
 
 // Set diagram gutter.
 $diagram-gutter: 100px;
@@ -48,10 +48,13 @@ $diagram-list-item-border-size: 1px;
 $diagram-list-item-color: $base-color;
 
 // Set diagram list item indent;
-$diagram-list-item-indent: 8px;
+$diagram-list-item-indent: 14px;
 
-// Set diagram list item figure size;
-$diagram-list-item-figure-size: 1.5em;
+// Set diagram list item figure height.
+$diagram-list-item-figure-height: 25px;
+
+// Set diagram list item figure width.
+$diagram-list-item-figure-width: 45px;
 
 /**
  * Diagram arrow.

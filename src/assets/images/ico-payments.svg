@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 31 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-5056,-665)">
+        <g transform="matrix(1,0,0,0.776307,269.549,-282)">
+            <g id="Payments-Icon" transform="matrix(1.25,0,0,1.61019,4787.09,1213.44)">
+                <path d="M0,8L0,6C0,4.896 0.896,4 2,4L20,4C21.104,4 22,4.896 22,6L22,8L0,8ZM24,15.5C24,17.985 21.985,20 19.5,20C17.015,20 15,17.985 15,15.5C15,13.015 17.015,11 19.5,11C21.985,11 24,13.015 24,15.5ZM21.844,14.618L21.148,13.922L19.032,16.091L18.041,15.151L17.345,15.848L19.033,17.485L21.844,14.618L21.844,14.618ZM13,15.5C13,17.247 13.696,18.831 14.82,20L2,20C0.896,20 0,19.104 0,18L0,11L14.82,11C13.696,12.169 13,13.753 13,15.5ZM8,16L3,16L3,17L8,17L8,16ZM11,14L3,14L3,15L11,15L11,14Z" style="fill:rgb(24,204,48);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

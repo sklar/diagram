@@ -141,6 +141,7 @@ $diagram-list-item-angle: ();
 
 
 .dia__list__item {
+    align-items: center;
     background: #fff;
     border: $diagram-list-item-border-size solid currentColor;
     border-radius: 3px;
@@ -181,6 +182,9 @@ $diagram-list-item-angle: ();
         }
     }
     &[id="creditors"] {
+        &::after {
+            background-image: url("assets/images/acronym.svg#creditors");
+        }
         %dia__arrow__body {
             animation-delay:
                 1 * $diagram-arrow-animation-delay,
@@ -190,9 +194,25 @@ $diagram-list-item-angle: ();
             }
         }
     }
+    &[id="accounts"] {
+        &::after {
+            background-image: url("assets/images/acronym.svg#accounts");
+        }
+    }
+    &[id="charges"] {
+        &::after {
+            background-image: url("assets/images/acronym.svg#charges");
+        }
+    }
+    &[id="debtors"] {
+        &::after {
+            background-image: url("assets/images/acronym.svg#debtors");
+        }
+    }
     &[id="payments"] {
         &::after {
-            background-image: url("assets/images/icon-payments-green.svg");
+            background-image: url("assets/images/ico-payments.svg");
+            background-size: auto 80%;
         }
 
         %dia__arrow__body {
@@ -214,7 +234,7 @@ $diagram-list-item-angle: ();
     }
     &[id="bank-interface"] {
         &::after {
-            background-image: url("assets/images/icon-automatic-reconciliation.svg");
+            background-image: url("assets/images/ico-bank-interface.svg");
         }
 
         .dia__arrow {
@@ -239,7 +259,7 @@ $diagram-list-item-angle: ();
     }
     &[id="statements"] {
         &::after {
-            background-image: url("assets/images/icon-statements-green.svg");
+            background-image: url("assets/images/ico-statements.svg");
         }
 
         .dia__arrow {
@@ -295,9 +315,12 @@ $diagram-list-item-angle: ();
 // =============================================================================
 
 %dia__list__item__figure {
-    @include size($diagram-list-item-figure-size);
+    @include size(
+        $diagram-list-item-figure-width,
+        $diagram-list-item-figure-height
+    );
 
-    background: center no-repeat;
+    background: right center no-repeat;
     background-size: contain;
     display: flex;
     flex: 0 0 auto;
