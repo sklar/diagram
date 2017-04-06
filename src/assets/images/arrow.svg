@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 120" width="400" height="40">
     <defs>
         <symbol id="arrow">
-            <path opacity="0.75" d="M 345 27 L 345 40 L 372.5 30 L 400 20 L 372.5 10 L 345 0 L 345 13.000000000000004 L 0 12.999999999999998 L 0 27 L 345 27 Z"/>
+            <polygon opacity="0.75" points="0.005 11.879 0 27.879 377.901 28 370.874 33.852 375.994 40 400 20.007 376.007 0 370.883 6.144 377.906 12 0.005 11.879 0.005 11.879"/>
         </symbol>
     </defs>
 
