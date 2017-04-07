@@ -23,8 +23,8 @@
     <view id="accounts" viewBox="0 50 45 25"/>
     <view id="charges" viewBox="0 75 45 25"/>
 
-    <use xlink:href="#path-debtors" x="0" y="0" fill="#2979ff"/>
-    <use xlink:href="#path-creditors" x="0" y="25" fill="#2979ff"/>
-    <use xlink:href="#path-accounts" x="0" y="50" fill="#2979ff"/>
-    <use xlink:href="#path-charges" x="0" y="75" fill="#2979ff"/>
+    <use xlink:href="#path-debtors" x="0" y="0" fill="#5870db"/>
+    <use xlink:href="#path-creditors" x="0" y="25" fill="#5870db"/>
+    <use xlink:href="#path-accounts" x="0" y="50" fill="#5870db"/>
+    <use xlink:href="#path-charges" x="0" y="75" fill="#5870db"/>
 </svg>

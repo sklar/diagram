@@ -10,7 +10,7 @@
     <view id="secondary" viewBox="0 40 400 40"/>
     <view id="tertiary" viewBox="0 80 400 40"/>
 
-    <use xlink:href="#arrow" x="0" y="0" fill="#2979ff"/>
-    <use xlink:href="#arrow" x="0" y="40" fill="#00c853"/>
-    <use xlink:href="#arrow" x="0" y="80" fill="#666"/>
+    <use xlink:href="#arrow" x="0" y="0" fill="#5870db"/>
+    <use xlink:href="#arrow" x="0" y="40" fill="#18cc30"/>
+    <use xlink:href="#arrow" x="0" y="80" fill="#898989"/>
 </svg>
