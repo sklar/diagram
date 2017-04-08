@@ -8,23 +8,29 @@ block content
         .dia__cell.--primary
             h3.dia__cell__head SunSystems
             ul.dia__list
-                li.dia__list__item#debtors Debtors
-                li.dia__list__item#creditors Creditors
+                li.dia__list__item#debtors
+                    div.dia__list__item__content Debtors
+                li.dia__list__item#creditors
+                    div.dia__list__item__content Creditors
                     span.dia__arrow
-                li.dia__list__item#accounts Bank Accounts
+                li.dia__list__item#accounts
+                    div.dia__list__item__content Bank Accounts
                 li.dia__list__item#charges
-                    | Charges
-                    br
-                    | Rounding Differences
-                    br
-                    | Interest
+                    div.dia__list__item__content
+                        | Charges
+                        br
+                        | Rounding Differences
+                        br
+                        | Interest
 
         .dia__cell.--secondary
             h3.dia__cell__head Bank Payment System
             ul.dia__list
-                li.dia__list__item#payments Payments
+                li.dia__list__item#payments
+                    div.dia__list__item__content Payments
                     span.dia__arrow
-                li.dia__list__item#statements Statements
+                li.dia__list__item#statements
+                    div.dia__list__item__content Statements
                     span.dia__arrow
                     span.dia__arrow
                     span.dia__arrow
@@ -33,5 +39,6 @@ block content
         .dia__cell.--tertiary
             h3.dia__cell__head Bank
             ul.dia__list
-                li.dia__list__item#bank-interface Bank Interface
+                li.dia__list__item#bank-interface
+                    div.dia__list__item__content Bank Interface
                     span.dia__arrow
