@@ -193,6 +193,9 @@ $diagram-list-item-angle: ();
                     $diagram-list-item-figure-animation-duration,
                     $diagram-list-item-figure-animation-duration;
                 fill-mode: both, both;
+                // timin-function:
+                //     map-get($animation-easing, in-out-circ),
+                //     map-get($animation-easing, in-out-circ);
             }
         }
         .dia__list__item__content {
@@ -202,6 +205,9 @@ $diagram-list-item-angle: ();
                     $diagram-list-item-content-animation-duration,
                     $diagram-list-item-content-animation-duration;
                 fill-mode: both, both;
+                timin-function:
+                    map-get($animation-easing, in-out-circ),
+                    map-get($animation-easing, in-out-circ);
             }
         }
         %dia__arrow__body {
@@ -211,6 +217,9 @@ $diagram-list-item-angle: ();
                     $diagram-arrow-animation-duration,
                     $diagram-arrow-animation-duration;
                 fill-mode: both, both;
+                timin-function:
+                    map-get($animation-easing, in-out-circ),
+                    map-get($animation-easing, in-out-circ);
             }
         }
     }
@@ -225,9 +234,9 @@ $diagram-list-item-angle: ();
         &::after {
             animation-delay:
                 $diagram-list-animation-delay +
-                $diagram-list-item-content-animation-duration,
+                0.25 * $diagram-list-item-content-animation-duration,
                 $diagram-list-animation-delay +
-                $diagram-list-item-content-animation-duration;
+                0.25 * $diagram-list-item-content-animation-duration;
             background-image: url("assets/images/acronym.svg#creditors");
         }
         %dia__arrow__body {
@@ -271,11 +280,11 @@ $diagram-list-item-angle: ();
         &::after {
             animation-delay:
                 $diagram-list-animation-delay +
-                2 * $diagram-list-item-content-animation-duration +
+                1.25 * $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration,
                 $diagram-list-animation-delay +
-                2 * $diagram-list-item-content-animation-duration +
+                1.25 * $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration;
             background-image: url("assets/images/ico-payments.svg");
@@ -317,11 +326,11 @@ $diagram-list-item-angle: ();
         &::after {
             animation-delay:
                 $diagram-list-animation-delay +
-                3 * $diagram-list-item-content-animation-duration +
+                2.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 2 * $diagram-arrow-animation-duration,
                 $diagram-list-animation-delay +
-                3 * $diagram-list-item-content-animation-duration +
+                2.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 2 * $diagram-arrow-animation-duration;
             background-image: url("assets/images/ico-bank-interface.svg");
@@ -367,11 +376,11 @@ $diagram-list-item-angle: ();
         &::after {
             animation-delay:
                 $diagram-list-animation-delay +
-                4 * $diagram-list-item-content-animation-duration +
+                3.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 4 * $diagram-arrow-animation-duration,
                 $diagram-list-animation-delay +
-                4 * $diagram-list-item-content-animation-duration +
+                3.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 4 * $diagram-arrow-animation-duration;
             background-image: url("assets/images/ico-statements.svg");

@@ -30,13 +30,7 @@ $diagram-cell-size: calc((100% - 2 * #{$diagram-gutter}) / 3);
  */
 
 // Set diagram list animation delay.
-$diagram-list-animation-delay: 0;
-
-// // Set diagram list item animation duration.
-// $diagram-list-item-animation-duration: 0.6s;
-
-// // Set diagram list item animation delay.
-// $diagram-list-item-animation-delay: 0;
+$diagram-list-animation-delay: 1s;
 
 // Set diagram list border size.
 $diagram-list-border-size: 2px;
