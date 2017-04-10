@@ -11,6 +11,7 @@
     flex-direction: column;
     font-size: $diagram-font-size;
     line-height: $diagram-line-height-ratio;
+    min-width: 440px;
     width: 100%;
 
     @media (min-width: nth($diagram-breaks, 1)) {
@@ -29,7 +30,11 @@
     text-align: center;
 
     & + & {
-        margin-top: $diagram-gutter;
+        margin-top: calc(
+            #{$diagram-gutter} -
+            1rem * #{$diagram-line-height-ratio} -
+            2 * #{$diagram-list-gutter}
+        );
     }
 
     @media (min-width: nth($diagram-breaks, 1)) {
@@ -68,6 +73,7 @@
         }
         .dia__list__item {
             border-color: map-get($diagram-colors, primary);
+            justify-content: flex-end;
 
             &:not([id="creditors"])::after {
                 animation-delay:
@@ -79,6 +85,10 @@
                     4 * $diagram-list-item-content-animation-duration +
                     3 * $diagram-list-item-figure-animation-duration +
                     5 * $diagram-arrow-animation-duration;
+            }
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                justify-content: space-between;
             }
         }
         .dia__list__item__content {
@@ -103,7 +113,7 @@
             border-color: map-get($diagram-colors, secondary);
         }
         .dia__list__item__content {
-            // opacity: 0;
+            opacity: 0;
         }
     }
 }
@@ -123,7 +133,7 @@
             border-color: map-get($diagram-colors, tertiary);
         }
         .dia__list__item__content {
-            // opacity: 0;
+            opacity: 0;
         }
     }
 }
@@ -145,6 +155,16 @@
         transform: uppercase;
     }
     white-space: nowrap;
+}
+
+// Diagram cell header inset
+// =============================================================================
+
+.dia__cell__head__inset {
+    background-color: rgba(#fff, 0.75);
+    padding: 0 5px;
+    position: relative;
+    z-index: 1;
 }
 
 // Diagram list
@@ -201,7 +221,7 @@ $diagram-list-item-angle: ();
         @extend %dia__list__item__figure;
 
         content: "";
-        // opacity: 0;
+        opacity: 0;
     }
 
     & + & {
@@ -230,35 +250,35 @@ $diagram-list-item-angle: ();
 
 .dia__list__item {
     &[id] {
-        // &::after {
-        //     animation: {
-        //         name: fade--in, pop--in;
-        //         duration:
-        //             $diagram-list-item-figure-animation-duration,
-        //             $diagram-list-item-figure-animation-duration;
-        //         fill-mode: both, both;
-        //     }
-        // }
-        // .dia__list__item__content {
-        //     animation: {
-        //         name: fade--in;
-        //         duration:
-        //             $diagram-list-item-content-animation-duration;
-        //         fill-mode: both, both;;
-        //     }
-        // }
-        // %dia__arrow__body {
-        //     animation: {
-        //         name: fade--in, slide--left-reverse;
-        //         duration:
-        //             $diagram-arrow-animation-duration,
-        //             $diagram-arrow-animation-duration;
-        //         fill-mode: both, both;
-        //         timin-function:
-        //             map-get($animation-easing, in-out-circ),
-        //             map-get($animation-easing, in-out-circ);
-        //     }
-        // }
+        &::after {
+            animation: {
+                name: fade--in, pop--in;
+                duration:
+                    $diagram-list-item-figure-animation-duration,
+                    $diagram-list-item-figure-animation-duration;
+                fill-mode: both, both;
+            }
+        }
+        .dia__list__item__content {
+            animation: {
+                name: fade--in;
+                duration:
+                    $diagram-list-item-content-animation-duration;
+                fill-mode: both, both;;
+            }
+        }
+        %dia__arrow__body {
+            animation: {
+                name: fade--in, slide--left-reverse;
+                duration:
+                    $diagram-arrow-animation-duration,
+                    $diagram-arrow-animation-duration;
+                fill-mode: both, both;
+                timin-function:
+                    map-get($animation-easing, in-out-circ),
+                    map-get($animation-easing, in-out-circ);
+            }
+        }
     }
 
     &[id="creditors"],
@@ -275,19 +295,43 @@ $diagram-list-item-angle: ();
     &[id="creditors"],
     &[id="payments"] {
         .dia__arrow {
-            right: (-1) * (
-                $diagram-arrow-width +
+            bottom: (-1) * (
+                $diagram-arrow-height +
                 $diagram-list-gutter +
                 $diagram-list-border-size
             );
+            transform: rotate(90deg);
+            transform-origin: 0 0;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                right: (-1) * (
+                    $diagram-arrow-width +
+                    $diagram-list-gutter +
+                    $diagram-list-border-size
+                );
+                transform: none;
+                transform-origin: 50% 50%;
+            }
         }
     }
 
     &[id="bank-interface"],
     &[id="statements"] {
         .dia__arrow {
-            left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
-            transform-origin: 0 center;
+            margin-bottom: 50%;
+            top: (-1) * (
+                $diagram-arrow-height +
+                $diagram-list-gutter +
+                $diagram-list-border-size
+            );
+            transform: rotate(-90deg);
+            transform-origin: 0 100%;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+                top: 50%;
+                transform-origin: 0 50%;
+            }
         }
     }
 }
@@ -305,6 +349,9 @@ $diagram-list-item-angle: ();
                 $diagram-list-animation-delay +
                 0.25 * $diagram-list-item-content-animation-duration;
             background-image: url("assets/images/acronym.svg#creditors");
+        }
+        .dia__arrow {
+            left: 50%;
         }
         %dia__arrow__body {
             animation-delay:
@@ -433,15 +480,21 @@ $diagram-list-item-angle: ();
                 2 * $diagram-arrow-animation-duration;
         }
         .dia__arrow {
-            transform:
-                rotate(
-                    180deg -
-                    rad-to-deg(nth($diagram-list-item-angle, 1))
-                )
-                scaleX(
-                    ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                    $diagram-arrow-width
-                );
+            left: 75%;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+
+                transform:
+                    rotate(
+                        180deg -
+                        rad-to-deg(nth($diagram-list-item-angle, 1))
+                    )
+                    scaleX(
+                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                        $diagram-arrow-width
+                    );
+            }
         }
         %dia__arrow__body {
             animation-delay:
@@ -486,41 +539,61 @@ $diagram-list-item-angle: ();
                 4 * $diagram-arrow-animation-duration;
         }
         .dia__arrow {
+            display: none;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                display: block;
+            }
+
             &:nth-of-type(1) {
-                transform:
-                    rotate(
-                        180deg +
-                        rad-to-deg(nth($diagram-list-item-angle, 2))
-                    )
-                    scaleX(
-                        (2 * $diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 2))) /
-                        $diagram-arrow-width
-                    );
+                display: block;
+                left: 20%;
+
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+
+                    transform:
+                        rotate(
+                            180deg +
+                            rad-to-deg(nth($diagram-list-item-angle, 2))
+                        )
+                        scaleX(
+                            (2 * $diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 2))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
             &:nth-of-type(2) {
-                transform:
-                    rotate(
-                        180deg +
-                        rad-to-deg(nth($diagram-list-item-angle, 1))
-                    )
-                    scaleX(
-                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                        $diagram-arrow-width
-                    );
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform:
+                        rotate(
+                            180deg +
+                            rad-to-deg(nth($diagram-list-item-angle, 1))
+                        )
+                        scaleX(
+                            ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
             &:nth-of-type(3) {
-                transform: rotate(180deg);
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform: rotate(180deg);
+                }
+
             }
             &:nth-of-type(4) {
-                transform:
-                    rotate(
-                        180deg -
-                        rad-to-deg(nth($diagram-list-item-angle, 1))
-                    )
-                    scaleX(
-                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                        $diagram-arrow-width
-                    );
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform:
+                        rotate(
+                            180deg -
+                            rad-to-deg(nth($diagram-list-item-angle, 1))
+                        )
+                        scaleX(
+                            ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
         }
         %dia__arrow__body {
@@ -565,17 +638,13 @@ $diagram-list-item-angle: ();
 // =============================================================================
 
 .dia__arrow {
-    display: none;
-
     @include acceleration;
     @include size(
         $diagram-arrow-width,
         $diagram-arrow-height
     );
 
-    bottom: 0;
     left: 50%;
-    // margin-left: -0.5 * $diagram-arrow-width;
     overflow: hidden;
     position: absolute;
 
@@ -585,7 +654,10 @@ $diagram-list-item-angle: ();
     }
 
     @media (min-width: nth($diagram-breaks, 1)) {
-        margin-top: -0.5 * $diagram-arrow-height;
+        margin: {
+            left: auto;
+            top: -0.5 * $diagram-arrow-height;
+        }
         top: 50%;
     }
 }
