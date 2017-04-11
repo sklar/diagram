@@ -6,6 +6,11 @@
 // Diagram settings
 // =============================================================================
 
+// Set diagram breakpoints.
+$diagram-breaks: (
+    860px,
+);
+
 // Set diagram colors.
 $diagram-colors: (
     primary: #5870db,

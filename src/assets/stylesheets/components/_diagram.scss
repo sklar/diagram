@@ -8,9 +8,15 @@
 
 .dia {
     display: flex;
+    flex-direction: column;
     font-size: $diagram-font-size;
     line-height: $diagram-line-height-ratio;
+    min-width: 440px;
     width: 100%;
+
+    @media (min-width: nth($diagram-breaks, 1)) {
+        flex-direction: row;
+    }
 }
 
 // =============================================================================
@@ -21,16 +27,32 @@
 // =============================================================================
 
 .dia__cell {
-    width: $diagram-cell-size;
-
-    &:not(.\--primary) {
-        padding-top: $base-line-height +
-            $diagram-list-gutter +
-            2 * ($diagram-list-item-border-size + $diagram-list-item-indent);
-    }
+    text-align: center;
 
     & + & {
-        margin-left: $diagram-gutter;
+        margin-top: calc(
+            #{$diagram-gutter} -
+            1rem * #{$diagram-line-height-ratio} -
+            2 * #{$diagram-list-gutter}
+        );
+    }
+
+    @media (min-width: nth($diagram-breaks, 1)) {
+        text-align: left;
+        width: $diagram-cell-size;
+
+        &:not(.\--primary) {
+            padding-top: $base-line-height +
+                $diagram-list-gutter +
+                2 * ($diagram-list-item-border-size + $diagram-list-item-indent);
+        }
+
+        & + & {
+            margin: {
+                left: $diagram-gutter;
+                top: 0;
+            }
+        }
     }
 }
 
@@ -51,6 +73,7 @@
         }
         .dia__list__item {
             border-color: map-get($diagram-colors, primary);
+            justify-content: flex-end;
 
             &:not([id="creditors"])::after {
                 animation-delay:
@@ -62,6 +85,10 @@
                     4 * $diagram-list-item-content-animation-duration +
                     3 * $diagram-list-item-figure-animation-duration +
                     5 * $diagram-arrow-animation-duration;
+            }
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                justify-content: space-between;
             }
         }
         .dia__list__item__content {
@@ -130,15 +157,30 @@
     white-space: nowrap;
 }
 
+// Diagram cell header inset
+// =============================================================================
+
+.dia__cell__head__inset {
+    background-color: rgba(#fff, 0.75);
+    padding: 0 5px;
+    position: relative;
+    z-index: 1;
+}
+
 // Diagram list
 // =============================================================================
 
 .dia__list {
     border: $diagram-list-border-size solid currentColor;
     border-radius: 4px;
+    display: flex;
     list-style: none;
     margin: 0;
     padding: $diagram-list-gutter;
+
+    @media (min-width: nth($diagram-breaks, 1)) {
+        display: block;
+    }
 }
 
 // Diagram list item
@@ -169,6 +211,8 @@ $diagram-list-item-angle: ();
     border-radius: 3px;
     color: $diagram-list-item-color;
     display: flex;
+    flex: 1;
+    flex-direction: column;
     justify-content: space-between;
     padding: $diagram-list-item-indent;
     position: relative;
@@ -181,9 +225,30 @@ $diagram-list-item-angle: ();
     }
 
     & + & {
-        margin-top: $diagram-list-gutter;
+        margin-left: $diagram-list-gutter;
     }
 
+    @media (min-width: nth($diagram-breaks, 1)) {
+        flex-direction: row;
+
+        & + & {
+            margin: {
+                left: 0;
+                top: $diagram-list-gutter;
+            }
+        }
+    }
+}
+
+/**
+ * Modifiers.
+ */
+
+/**
+ * Diagram list item, ids.
+ */
+
+.dia__list__item {
     &[id] {
         &::after {
             animation: {
@@ -192,9 +257,6 @@ $diagram-list-item-angle: ();
                     $diagram-list-item-figure-animation-duration,
                     $diagram-list-item-figure-animation-duration;
                 fill-mode: both, both;
-                // timin-function:
-                //     map-get($animation-easing, in-out-circ),
-                //     map-get($animation-easing, in-out-circ);
             }
         }
         .dia__list__item__content {
@@ -220,11 +282,65 @@ $diagram-list-item-angle: ();
     }
 
     &[id="creditors"],
-    &[id="payments"] {
-        .dia__arrow {
-            right: (-1) * ($diagram-arrow-width + $diagram-list-gutter + $diagram-list-border-size);
+    &[id="debtors"] {
+        &::after {
+            margin-left: -1.5em;
+        }
+
+        @media (min-width: nth($diagram-breaks, 1)) {
+            margin-left: 0;
         }
     }
+
+    &[id="creditors"],
+    &[id="payments"] {
+        .dia__arrow {
+            bottom: (-1) * (
+                $diagram-arrow-height +
+                $diagram-list-gutter +
+                $diagram-list-border-size
+            );
+            transform: rotate(90deg);
+            transform-origin: 0 0;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                right: (-1) * (
+                    $diagram-arrow-width +
+                    $diagram-list-gutter +
+                    $diagram-list-border-size
+                );
+                transform: none;
+                transform-origin: 50% 50%;
+            }
+        }
+    }
+
+    &[id="bank-interface"],
+    &[id="statements"] {
+        .dia__arrow {
+            margin-bottom: 50%;
+            top: (-1) * (
+                $diagram-arrow-height +
+                $diagram-list-gutter +
+                $diagram-list-border-size
+            );
+            transform: rotate(-90deg);
+            transform-origin: 0 100%;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+                top: 50%;
+                transform-origin: 0 50%;
+            }
+        }
+    }
+}
+
+/**
+ * Diagram list item, creditors.
+ */
+
+.dia__list__item {
     &[id="creditors"] {
         &::after {
             animation-delay:
@@ -233,6 +349,9 @@ $diagram-list-item-angle: ();
                 $diagram-list-animation-delay +
                 0.25 * $diagram-list-item-content-animation-duration;
             background-image: url("assets/images/acronym.svg#creditors");
+        }
+        .dia__arrow {
+            left: 50%;
         }
         %dia__arrow__body {
             animation-delay:
@@ -247,6 +366,13 @@ $diagram-list-item-angle: ();
             }
         }
     }
+}
+
+/**
+ * Diagram list item, accounts.
+ */
+
+.dia__list__item {
     &[id="accounts"] {
         &::after {
             animation-delay:
@@ -255,6 +381,13 @@ $diagram-list-item-angle: ();
             background-image: url("assets/images/acronym.svg#accounts");
         }
     }
+}
+
+/**
+ * Diagram list item, charges.
+ */
+
+.dia__list__item {
     &[id="charges"] {
         &::after {
             animation-delay:
@@ -263,6 +396,13 @@ $diagram-list-item-angle: ();
             background-image: url("assets/images/acronym.svg#charges");
         }
     }
+}
+
+/**
+ * Diagram list item, debtors.
+ */
+
+.dia__list__item {
     &[id="debtors"] {
         &::after {
             animation-delay:
@@ -271,6 +411,13 @@ $diagram-list-item-angle: ();
             background-image: url("assets/images/acronym.svg#debtors");
         }
     }
+}
+
+/**
+ * Diagram list item, payments.
+ */
+
+.dia__list__item {
     &[id="payments"] {
         &::after {
             animation-delay:
@@ -305,14 +452,13 @@ $diagram-list-item-angle: ();
             background-image: url("assets/images/arrow.svg#secondary");
         }
     }
+}
 
-    &[id="bank-interface"],
-    &[id="statements"] {
-        .dia__arrow {
-            left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
-            transform-origin: 0 center;
-        }
-    }
+/**
+ * Diagram list item, bank interface.
+ */
+
+.dia__list__item {
     &[id="bank-interface"] {
         &::after {
             animation-delay:
@@ -334,15 +480,21 @@ $diagram-list-item-angle: ();
                 2 * $diagram-arrow-animation-duration;
         }
         .dia__arrow {
-            transform:
-                rotate(
-                    180deg -
-                    rad-to-deg(nth($diagram-list-item-angle, 1))
-                )
-                scaleX(
-                    ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                    $diagram-arrow-width
-                );
+            left: 75%;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+
+                transform:
+                    rotate(
+                        180deg -
+                        rad-to-deg(nth($diagram-list-item-angle, 1))
+                    )
+                    scaleX(
+                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                        $diagram-arrow-width
+                    );
+            }
         }
         %dia__arrow__body {
             animation-delay:
@@ -359,6 +511,13 @@ $diagram-list-item-angle: ();
             }
         }
     }
+}
+
+/**
+ * Diagram list item, statements.
+ */
+
+.dia__list__item {
     &[id="statements"] {
         &::after {
             animation-delay:
@@ -380,41 +539,61 @@ $diagram-list-item-angle: ();
                 4 * $diagram-arrow-animation-duration;
         }
         .dia__arrow {
+            display: none;
+
+            @media (min-width: nth($diagram-breaks, 1)) {
+                display: block;
+            }
+
             &:nth-of-type(1) {
-                transform:
-                    rotate(
-                        180deg +
-                        rad-to-deg(nth($diagram-list-item-angle, 2))
-                    )
-                    scaleX(
-                        (2 * $diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 2))) /
-                        $diagram-arrow-width
-                    );
+                display: block;
+                left: 20%;
+
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    left: (-1) * ($diagram-list-gutter + $diagram-list-border-size);
+
+                    transform:
+                        rotate(
+                            180deg +
+                            rad-to-deg(nth($diagram-list-item-angle, 2))
+                        )
+                        scaleX(
+                            (2 * $diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 2))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
             &:nth-of-type(2) {
-                transform:
-                    rotate(
-                        180deg +
-                        rad-to-deg(nth($diagram-list-item-angle, 1))
-                    )
-                    scaleX(
-                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                        $diagram-arrow-width
-                    );
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform:
+                        rotate(
+                            180deg +
+                            rad-to-deg(nth($diagram-list-item-angle, 1))
+                        )
+                        scaleX(
+                            ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
             &:nth-of-type(3) {
-                transform: rotate(180deg);
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform: rotate(180deg);
+                }
+
             }
             &:nth-of-type(4) {
-                transform:
-                    rotate(
-                        180deg -
-                        rad-to-deg(nth($diagram-list-item-angle, 1))
-                    )
-                    scaleX(
-                        ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
-                        $diagram-arrow-width
-                    );
+                @media (min-width: nth($diagram-breaks, 1)) {
+                    transform:
+                        rotate(
+                            180deg -
+                            rad-to-deg(nth($diagram-list-item-angle, 1))
+                        )
+                        scaleX(
+                            ($diagram-list-item-spacing / sin(nth($diagram-list-item-angle, 1))) /
+                            $diagram-arrow-width
+                        );
+                }
             }
         }
         %dia__arrow__body {
@@ -443,10 +622,16 @@ $diagram-list-item-angle: ();
         $diagram-list-item-figure-height
     );
 
-    background: right center no-repeat;
+    background: center no-repeat;
     background-size: contain;
     display: flex;
     flex: 0 0 auto;
+    margin-top: $diagram-list-gutter;
+
+    @media (min-width: nth($diagram-breaks, 1)) {
+        background-position: right center;
+        margin-top: 0;
+    }
 }
 
 // Diagram arrow
@@ -454,17 +639,26 @@ $diagram-list-item-angle: ();
 
 .dia__arrow {
     @include acceleration;
+    @include size(
+        $diagram-arrow-width,
+        $diagram-arrow-height
+    );
 
-    height: $diagram-arrow-height;
-    margin-top: -0.5 * $diagram-arrow-height;
+    left: 50%;
     overflow: hidden;
     position: absolute;
-    top: 50%;
-    width: $diagram-arrow-width;
 
     &::after {
         @extend %dia__arrow__body;
         content: "";
+    }
+
+    @media (min-width: nth($diagram-breaks, 1)) {
+        margin: {
+            left: auto;
+            top: -0.5 * $diagram-arrow-height;
+        }
+        top: 50%;
     }
 }
 
