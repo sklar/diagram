@@ -348,7 +348,7 @@ $diagram-list-item-angle: ();
                 0.25 * $diagram-list-item-content-animation-duration,
                 $diagram-list-animation-delay +
                 0.25 * $diagram-list-item-content-animation-duration;
-            background-image: url("assets/images/acronym.svg#creditors");
+            background-image: url("../images/acronym.svg#creditors");
         }
         .dia__arrow {
             left: 50%;
@@ -362,7 +362,7 @@ $diagram-list-item-angle: ();
                 $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration;
             background: {
-                image: url("assets/images/arrow.svg#primary");
+                image: url("../images/arrow.svg#primary");
             }
         }
     }
@@ -378,7 +378,7 @@ $diagram-list-item-angle: ();
             animation-delay:
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay,
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay;
-            background-image: url("assets/images/acronym.svg#accounts");
+            background-image: url("../images/acronym.svg#accounts");
         }
     }
 }
@@ -393,7 +393,7 @@ $diagram-list-item-angle: ();
             animation-delay:
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay,
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay;
-            background-image: url("assets/images/acronym.svg#charges");
+            background-image: url("../images/acronym.svg#charges");
         }
     }
 }
@@ -408,7 +408,7 @@ $diagram-list-item-angle: ();
             animation-delay:
                 5 * $diagram-list-item-figure-animation-delay,
                 5 * $diagram-list-item-figure-animation-delay;
-            background-image: url("assets/images/acronym.svg#debtors");
+            background-image: url("../images/acronym.svg#debtors");
         }
     }
 }
@@ -429,7 +429,7 @@ $diagram-list-item-angle: ();
                 1.25 * $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration;
-            background-image: url("assets/images/ico-payments.svg");
+            background-image: url("../images/ico-payments.svg");
             background-size: auto 80%;
         }
         .dia__list__item__content {
@@ -449,7 +449,7 @@ $diagram-list-item-angle: ();
                 2 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration;
-            background-image: url("assets/images/arrow.svg#secondary");
+            background-image: url("../images/arrow.svg#secondary");
         }
     }
 }
@@ -470,7 +470,7 @@ $diagram-list-item-angle: ();
                 2.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 2 * $diagram-arrow-animation-duration;
-            background-image: url("assets/images/ico-bank-interface.svg");
+            background-image: url("../images/ico-bank-interface.svg");
         }
         .dia__list__item__content {
             animation-delay:
@@ -507,7 +507,7 @@ $diagram-list-item-angle: ();
                 2 * $diagram-list-item-figure-animation-duration +
                 3 * $diagram-arrow-animation-duration;
             background: {
-                image: url("assets/images/arrow.svg#tertiary");
+                image: url("../images/arrow.svg#tertiary");
             }
         }
     }
@@ -529,7 +529,7 @@ $diagram-list-item-angle: ();
                 3.25 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 4 * $diagram-arrow-animation-duration;
-            background-image: url("assets/images/ico-statements.svg");
+            background-image: url("../images/ico-statements.svg");
         }
         .dia__list__item__content {
             animation-delay:
@@ -607,7 +607,7 @@ $diagram-list-item-angle: ();
                 3 * $diagram-list-item-figure-animation-duration +
                 4 * $diagram-arrow-animation-duration;
             background: {
-                image: url("assets/images/arrow.svg#secondary");
+                image: url("../images/arrow.svg#secondary");
             }
         }
     }
