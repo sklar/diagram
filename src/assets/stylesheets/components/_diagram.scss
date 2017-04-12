@@ -62,6 +62,9 @@
 
 /**
  * Diagram cell, primary.
+ *
+ * 1. Safari SVG fragment indentifiers bug workaround.
+ *  @see https://caniuse.com/#feat=svg-fragment
  */
 
 .dia__cell {
@@ -74,6 +77,13 @@
         .dia__list__item {
             border-color: map-get($diagram-colors, primary);
             justify-content: flex-end;
+
+            &::after {
+                background: {                               /* 1 */
+                    image: url("../images/acronym.svg");
+                    size: 100% 400%;
+                }
+            }
 
             &:not([id="creditors"])::after {
                 animation-delay:
@@ -246,6 +256,7 @@ $diagram-list-item-angle: ();
 
 /**
  * Diagram list item, ids.
+ *
  */
 
 .dia__list__item {
@@ -315,6 +326,21 @@ $diagram-list-item-angle: ();
         }
     }
 
+    /**
+     * 1. Safari SVG fragment indentifiers bug workaround.
+     *  @see https://caniuse.com/#feat=svg-fragment
+     */
+
+    &[id="payments"],
+    &[id="statements"] {
+        %dia__arrow__body {
+            background: {
+                // image: url("../images/arrow.svg#secondary");
+                position-y: -8px;  /* 1 */
+            }
+        }
+    }
+
     &[id="bank-interface"],
     &[id="statements"] {
         .dia__arrow {
@@ -338,6 +364,9 @@ $diagram-list-item-angle: ();
 
 /**
  * Diagram list item, creditors.
+ *
+ * 1. Safari SVG fragment indentifiers bug workaround.
+ *  @see https://caniuse.com/#feat=svg-fragment
  */
 
 .dia__list__item {
@@ -348,7 +377,10 @@ $diagram-list-item-angle: ();
                 0.25 * $diagram-list-item-content-animation-duration,
                 $diagram-list-animation-delay +
                 0.25 * $diagram-list-item-content-animation-duration;
-            background-image: url("../images/acronym.svg#creditors");
+            // background-image: url("../images/acronym.svg#creditors");
+            background: {
+                position: 0 -25px; /* 1 */
+            }
         }
         .dia__arrow {
             left: 50%;
@@ -362,7 +394,8 @@ $diagram-list-item-angle: ();
                 $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration;
             background: {
-                image: url("../images/arrow.svg#primary");
+                // image: url("../images/arrow.svg#primary");
+                position-y: 0;  /* 1 */
             }
         }
     }
@@ -379,6 +412,9 @@ $diagram-list-item-angle: ();
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay,
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay;
             background-image: url("../images/acronym.svg#accounts");
+            background: {
+                position: 0 -50px; /* 1 */
+            }
         }
     }
 }
@@ -394,12 +430,18 @@ $diagram-list-item-angle: ();
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay,
                 $diagram-list-animation-delay + 5 * $diagram-list-item-figure-animation-delay;
             background-image: url("../images/acronym.svg#charges");
+            background: {
+                position: 0 -75px; /* 1 */
+            }
         }
     }
 }
 
 /**
  * Diagram list item, debtors.
+ *
+ * 1. Safari SVG fragment indentifiers bug workaround.
+ *  @see https://caniuse.com/#feat=svg-fragment
  */
 
 .dia__list__item {
@@ -408,7 +450,10 @@ $diagram-list-item-angle: ();
             animation-delay:
                 5 * $diagram-list-item-figure-animation-delay,
                 5 * $diagram-list-item-figure-animation-delay;
-            background-image: url("../images/acronym.svg#debtors");
+            // background-image: url("../images/acronym.svg#debtors");
+            background: {
+                position: 0 0; /* 1 */
+            }
         }
     }
 }
@@ -429,8 +474,10 @@ $diagram-list-item-angle: ();
                 1.25 * $diagram-list-item-content-animation-duration +
                 $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration;
-            background-image: url("../images/ico-payments.svg");
-            background-size: auto 80%;
+            background: {
+                image: url("../images/ico-payments.svg");
+                size: auto 80%;
+            }
         }
         .dia__list__item__content {
             animation-delay:
@@ -449,7 +496,6 @@ $diagram-list-item-angle: ();
                 2 * $diagram-list-item-content-animation-duration +
                 2 * $diagram-list-item-figure-animation-duration +
                 $diagram-arrow-animation-duration;
-            background-image: url("../images/arrow.svg#secondary");
         }
     }
 }
@@ -496,6 +542,12 @@ $diagram-list-item-angle: ();
                     );
             }
         }
+
+        /**
+         * 1. Safari SVG fragment indentifiers bug workaround.
+         *  @see https://caniuse.com/#feat=svg-fragment
+         */
+
         %dia__arrow__body {
             animation-delay:
                 $diagram-list-animation-delay +
@@ -507,7 +559,8 @@ $diagram-list-item-angle: ();
                 2 * $diagram-list-item-figure-animation-duration +
                 3 * $diagram-arrow-animation-duration;
             background: {
-                image: url("../images/arrow.svg#tertiary");
+                // image: url("../images/arrow.svg#tertiary");
+                position-y: -16px;  /* 1 */
             }
         }
     }
@@ -606,9 +659,6 @@ $diagram-list-item-angle: ();
                 4 * $diagram-list-item-content-animation-duration +
                 3 * $diagram-list-item-figure-animation-duration +
                 4 * $diagram-arrow-animation-duration;
-            background: {
-                image: url("../images/arrow.svg#secondary");
-            }
         }
     }
 }
@@ -665,11 +715,17 @@ $diagram-list-item-angle: ();
 // Diagram arrow body
 // =============================================================================
 
+/**
+ * 1. Safari SVG fragment indentifiers bug workaround.
+ *  @see https://caniuse.com/#feat=svg-fragment
+ */
+
 %dia__arrow__body {
     background: {
-        position: right center;
+        image: url("../images/arrow.svg");  /* 1 */
+        position: right 0;
         repeat: no-repeat;
-        size: cover;
+        size: auto 300%;    /* 1 */
     }
     display: block;
     height: $diagram-arrow-height;
