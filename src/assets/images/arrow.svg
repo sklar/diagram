@@ -1,14 +1,14 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 120" width="400" height="40">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 120">
     <defs>
         <symbol id="arrow">
-            <polygon opacity="0.75" points="0.005 11.879 0 27.879 377.901 28 370.874 33.852 375.994 40 400 20.007 376.007 0 370.883 6.144 377.906 12 0.005 11.879 0.005 11.879"/>
+            <polygon opacity="0.75" points="0.005 11.879 0 27.879 1177.903 28 1170.876 33.852 1175.996 40 1200.002 20.007 1176.009 0 1170.885 6.144 1177.908 12 0.005 11.879 0.005 11.879"/>
         </symbol>
     </defs>
 
-    <view id="primary" viewBox="0 0 400 40"/>
-    <view id="secondary" viewBox="0 40 400 40"/>
-    <view id="tertiary" viewBox="0 80 400 40"/>
+    <view id="primary" viewBox="0 0 1200 40"/>
+    <view id="secondary" viewBox="0 40 1200 40"/>
+    <view id="tertiary" viewBox="0 80 1200 40"/>
 
     <use xlink:href="#arrow" x="0" y="0" fill="#5870db"/>
     <use xlink:href="#arrow" x="0" y="40" fill="#18cc30"/>
