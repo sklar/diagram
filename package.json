@@ -1,6 +1,6 @@
 {
   "name": "@sklar/diagram",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "",
   "scripts": {
     "build": "(run-p build:image build:css) && npm run compile:pug",
