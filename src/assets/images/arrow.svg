@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 120">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 120" width="1200" height="120">
     <defs>
         <symbol id="arrow">
             <polygon opacity="0.75" points="0.005 11.879 0 27.879 1177.903 28 1170.876 33.852 1175.996 40 1200.002 20.007 1176.009 0 1170.885 6.144 1177.908 12 0.005 11.879 0.005 11.879"/>
